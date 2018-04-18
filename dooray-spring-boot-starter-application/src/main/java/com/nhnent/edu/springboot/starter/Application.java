@@ -21,14 +21,11 @@ public class Application {
 
     @Bean
     public ApplicationListener<ApplicationReadyEvent> applicationListener() {
-        return new ApplicationListener<ApplicationReadyEvent>() {
-            @Override
-            public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-                DoorayHook doorayHook = new DoorayHook();
-                doorayHook.setBotName("test");
-                doorayHook.setText("test!!");
-                doorayHookSender.send(doorayHook);
-            }
+        return applicationReadyEvent -> {
+            DoorayHook doorayHook = new DoorayHook();
+            doorayHook.setBotName("test");
+            doorayHook.setText("test!!");
+            doorayHookSender.send(doorayHook);
         };
     }
 
